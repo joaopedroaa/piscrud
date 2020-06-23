@@ -27,7 +27,7 @@ $row_login = mysqli_num_rows($query_login);
 
 if ($row) {
   $_SESSION['username'] = $username;
-  header("Location:../secret/app.php");
+  header("Location:../pages/index.php");
   exit();
 } else {
 

@@ -1,16 +1,16 @@
-section {
+section.login {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   height: 100vh;
-
+  width: 100%;
   h1 {
     margin: 0 0 20px;
     font-size: 2.4rem;
     color: white;
   }
-}
+
 
 form {
   display: flex;
@@ -96,6 +96,7 @@ form {
 
   p {
     color: white;
+    margin-top: 10px;
     a {
       font-weight: bold;
     }
@@ -106,4 +107,6 @@ form {
       color: #24f242;
     }
   }
+}
+
 }
