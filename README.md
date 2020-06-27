@@ -1,5 +1,4 @@
-![screenshot](./.github/screenshot.png)
-![screenshot](./.github/screenshot2.png)
+### Crud simples com uma tela de login 
 
 ## SQL
 
