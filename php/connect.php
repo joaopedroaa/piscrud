@@ -3,7 +3,9 @@
 $hostname = "localhost";
 $username = "joaopedro";
 $password = "password";
-$database = "signin";
-$table = "person";
+$database = "escola";
 
-$conn = mysqli_connect($hostname, $username, $password, $database) or die('Connect error');;
+$tableLogin = "login";
+$tableApp = "student";
+
+$connect = mysqli_connect($hostname, $username, $password, $database) or die('Connect error');;

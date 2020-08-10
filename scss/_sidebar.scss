@@ -47,6 +47,9 @@ aside.locadora {
     }
 
     h2 {
+      display: flex;
+      align-items: center;
+      font-size: 1.3em;
       a {
         position: absolute;
         top: 0;
@@ -73,9 +76,9 @@ aside.locadora {
       color: #7e7e7e;
     }
 
-    input {
-      height: 48px;
-      margin-bottom: 30px;
+    input, select {
+      height: 40px;
+      margin-bottom: 20px;
       padding: 10px;
 
       border: none;

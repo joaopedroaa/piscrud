@@ -1,17 +1,16 @@
 <?php
-
 include_once 'connect.php';
 
 $id = $_GET['id'];
 
-$query = "DELETE FROM $table WHERE id=$id";
-
+$query = "DELETE FROM $tableApp WHERE registration=$id;";
+echo $query;
 $delete = mysqli_query($connect, $query);
 
 if ($delete) {
-  header('location:../index.php');
+  header('location:../pages/index.php');
 } else {
-  echo "Delete error";
+  die("Delete error");
 }
 
 mysqli_close($connect);

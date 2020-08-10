@@ -1,10 +1,29 @@
 ## SQL
 
+### V1
+
 ```sql
-CREATE TABLE person(
+CREATE TABLE login(
     id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL,
-    login VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(100) NOT NULL
+    name      VARCHAR(100) NOT NULL,
+    login     VARCHAR(100) NOT NULL UNIQUE,
+    password  VARCHAR(100) NOT NULL
 );
 ```
+
+```sql
+CREATE TABLE student(
+  registration INT PRIMARY KEY AUTO_INCREMENT,
+  name      VARCHAR(100) NOT NULL,
+  birth     VARCHAR(100) NOT NULL,
+  rg        VARCHAR(100) NOT NULL UNIQUE,
+  cpf       VARCHAR(100) NOT NULL UNIQUE,
+  phone     VARCHAR(100) NOT NULL UNIQUE,
+  course    VARCHAR(100) NOT NULL,
+  year      VARCHAR(100) NOT NULL,
+  expedient VARCHAR(100) NOT NULL
+);
+```
+
+<!-- todo: add email -->
+<!-- todo: change registration name -->

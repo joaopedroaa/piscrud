@@ -1,9 +1,6 @@
 <!DOCTYPE html>
+<?php session_start(); ?>
 <html lang="pt-br">
-<?php
-session_start();
-include('../php/utils/verify_login.php')
-?>
 
 <head>
   <meta charset="UTF-8">
@@ -17,23 +14,51 @@ include('../php/utils/verify_login.php')
 <body>
   <aside class="locadora">
     <form action="../php/create.php" method="post">
-      <h2><a href="../php/utils/logout.php"><i class="fas fa-times"></i> Sair</a></h2>
+      <h2>
+        <a href="../php/utils/logout.php">
+          <i class="fas fa-times"></i>
+          <?php echo $_SESSION['name']; ?>
+        </a>
+      </h2>
       <!-- <h1>Lo<span>car</span>dora</h1> -->
 
-      <label for="">Modelo</label>
-      <input type="text" name="model" id="model" placeholder="S" required>
+      <label for="name">Nome do aluno</label>
+      <input type="text" name="name" id="name">
 
-      <label for="">Marca</label>
-      <input type="text" name="brand" id="brand" placeholder="Tesla" required>
+      <label for="birth">Data de Nascimento</label>
+      <input type="date" name="birth" id="birth">
 
-      <label for="">Preco</label>
-      <input type="number" name="price" id="price" placeholder="50.200" required step="0.001">
+      <label for="rg">RG</label>
+      <input type="text" name="rg" id="rg">
 
-      <label for="">Ano</label>
-      <input type="number" name="year" id="year" placeholder="2017" required min="1769" max="2022">
+      <label for="cpf">CPF</label>
+      <input type="text" name="cpf" id="cpf">
 
-      <label for="">Cor</label>
-      <input type="text" name="color" id="color" placeholder="Roxo" required>
+      <label for="phone">Telefone</label>
+      <input type="text" name="phone" id="phone">
+
+      <label for="course">Curso</label>
+      <select name="course" id="course">
+        <option value="Química">Química</option>
+        <option value="Informática">Informática</option>
+        <option value="Administração">Administração</option>
+        <option value="Petróleo e Gás">Petróleo e Gás</option>
+        <option value="Segurança do Trabalho">Segurança do Trabalho</option>
+      </select>
+
+      <label for="year">Ano</label>
+      <select name="year" id="year">
+        <option value="1">1 Ano</option>
+        <option value="2">2 Ano</option>
+        <option value="3">3 Ano</option>
+      </select>
+
+      <label for="expedient">Turno</label>
+      <select name="expedient" id="expedient">
+        <option value="matutino">Matutino</option>
+        <option value="vespertino">Vespertino</option>
+      </select>
+
 
       <button type="submit">Cadastrar</button>
     </form>
@@ -44,12 +69,15 @@ include('../php/utils/verify_login.php')
 
     <form class="search-section" action="" method="post">
       <select name="options" id="">
-        <option value="brand">Marca</option>
-        <option value="id">Código</option>
-        <option value="model">Modelo</option>
-        <option value="price">Preco</option>
-        <option value="carYear">Ano</option>
-        <option value="color">Cor</option>
+        <option value="registration">Matricula</option>
+        <option value="name">Nome</option>
+        <option value="birth">Data de nascimento</option>
+        <option value="rg">RG</option>
+        <option value="cpf">CPF</option>
+        <option value="phone">Telefone</option>
+        <option value="course">Curso</option>
+        <option value="year">Ano</option>
+        <option value="expedient">Turno</option>
       </select>
       <input type="text" name="search">
       <button><i class="fa fa-search" aria-hidden="true"></i></button>
@@ -57,69 +85,104 @@ include('../php/utils/verify_login.php')
 
     <?php
     include_once "../php/connect.php";
+    include_once '../php/utils/verify_login.php';
+
     $searchText = $_POST['search'];
     $options = $_POST['options'];
 
+
     // TODO: Arrumar está coisa horrivel depois
-    if (isset($options)) {
-      if ($options == "id" || $options == "price" || $options == "carYear") {
-        $sqlRead = "SELECT * FROM $table WHERE $options LIKE '$searchText';";
-        $sqlCount =  "SELECT COUNT(*) as total FROM $table WHERE $options LIKE '$searchText';";
+    // if (!isset($options) || $searchText == "") {
+    //   $sqlRead = "SELECT * FROM $tableApp";
+    //   $sqlCount =  "SELECT COUNT(*) as total FROM $tableApp";
+    // } else {
+    //   if (
+    //     $options == "registration" || $options == "rg" || $options == "cpf" ||
+    //     $options == "phone" || $options == "year" || $options == "expedient"
+    //   ) {
+    //     $sqlRead = "SELECT * FROM $tableApp WHERE $options LIKE '$searchText';";
+    //     $sqlCount =  "SELECT COUNT(*) as total FROM $tableApp WHERE $options LIKE '$searchText';";
+    //   } else {
+    //     $sqlRead = "SELECT * FROM $tableApp WHERE $options LIKE '$searchText%';";
+    //     $sqlCount =  "SELECT COUNT(*) as total FROM $tableApp WHERE $options LIKE '$searchText%';";
+    //   }
+    // }
+
+
+    $sqlRead = "SELECT * FROM $tableApp";
+    $sqlCount =  "SELECT COUNT(*) as total FROM $tableApp";
+    if (isset($options) && $searchText !== "") {
+      if (
+        $options == "registration" || $options == "rg" || $options == "cpf" ||
+        $options == "phone" || $options == "year" || $options == "expedient"
+      ) {
+        $sqlRead .= " WHERE $options LIKE '$searchText'";
+        $sqlCount .=  " WHERE $options LIKE '$searchText'";
       } else {
-        $sqlRead = "SELECT * FROM $table WHERE $options LIKE '$searchText%';";
-        $sqlCount =  "SELECT COUNT(*) as total FROM $table WHERE $options LIKE '$searchText%';";
+        $sqlRead .= " WHERE $options LIKE '$searchText%'";
+        $sqlCount .=  " WHERE $options LIKE '$searchText%'";
       }
-    } else {
-      $sqlRead = "SELECT *  FROM $table";
-      $sqlCount =  "SELECT COUNT(*) as total FROM $table";
     }
+    $sqlRead .= ";";
+    $sqlCount .=  ";";
 
     $queryRead = mysqli_query($connect, $sqlRead);
     $queryCount = mysqli_query($connect, $sqlCount);
-
     $searchTotal = mysqli_fetch_assoc($queryCount)['total'];
+
+    if (!$queryCount || !$queryRead) {
+      die("Falha na comunicação com o banco de dados!");
+    }
+
     echo "<p class='query'>$searchTotal encontrados</p>";
     // echo "<p class='query'>$sqlRead </p>";
     // echo "<p class='query'>$sqlCount </p>";
-    $searchData = [];
-    if ($queryRead->num_rows > 0) {
+
+
+    $searchRows = [];
+    if (mysqli_num_rows($queryRead) > 0) {
       while ($row = mysqli_fetch_assoc($queryRead)) {
-        $searchData[] = $row;
+        $searchRows[] = $row;
       }
     } else {
-      echo "Nada encontrado";
+      echo "Nenhum dado encontrado";
     }
     ?>
-
     <table>
       <thead>
-        <th>Código</th>
-        <th>Modelo</th>
-        <th>Marca</th>
-        <th>Preco</th>
+        <th>Matricula</th>
+        <th>Nome</th>
+        <th>Nascimento</th>
+        <th>RG</th>
+        <th>CPF</th>
+        <th>Telefone</th>
+        <th>Curso</th>
         <th>Ano</th>
-        <th>Cor</th>
+        <th>Turno</th>
         <th></th>
       </thead>
       <tbody>
-        <?php foreach ($searchData as $value) : ?>
+        <?php foreach ($searchRows as $value) : ?>
           <tr>
-            <td><?= $value['id'] ?> </td>
-            <td><?= $value['model'] ?> </td>
-            <td><?= $value['brand'] ?> </td>
-            <td><?= $value['price'] ?> </td>
-            <td><?= $value['carYear'] ?> </td>
-            <td><?= $value['color'] ?> </td>
-            <td><a class='btn-delete' href='../php/delete.php?id=<?= $value['id'] ?>'><i class='fas fa-trash'></i></a></td>
+            <td><?= $value["registration"] ?> </td>
+            <td><?= $value["name"]  ?> </td>
+            <td><?= $value["birth"] ?> </td>
+            <td><?= $value["rg"] ?> </td>
+            <td><?= $value["cpf"] ?> </td>
+            <td><?= $value["phone"] ?> </td>
+            <td><?= $value["course"] ?> </td>
+            <td><?= $value["year"] ?> </td>
+            <td><?= $value["expedient"] ?> </td>
+            <td><a class='btn-delete' href='../php/delete.php?id=<?= $value['registration'] ?>'><i class='fas fa-trash'></i></a></td>
           </tr>
         <?php endforeach ?>
       </tbody>
     </table>
   </section>
-
 </body>
+
+<script src="https://kit.fontawesome.com/1e26d1774e.js" crossorigin="anonymous"></script>
 <script src="../js/addInput.js"></script>
 <script src="../js/data.js"></script>
-<script src="https://kit.fontawesome.com/1e26d1774e.js" crossorigin="anonymous"></script>
 
 </html>

@@ -1,21 +1,24 @@
 <?php
-
 include_once "connect.php";
 
-$model =  filter_input(INPUT_POST, 'model', FILTER_SANITIZE_STRING);
-$brand = filter_input(INPUT_POST, 'brand', FILTER_SANITIZE_STRING);
-$price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_NUMBER_FLOAT);
-$carYear = filter_input(INPUT_POST, 'year', FILTER_SANITIZE_NUMBER_INT);
-$color = filter_input(INPUT_POST, 'color', FILTER_SANITIZE_STRING);
 
-$query = "INSERT INTO $table(model, brand, price, carYear, color) VALUES('$model', '$brand', '$price', $carYear, '$color')";
+$name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
+$birth = filter_input(INPUT_POST, "birth", FILTER_SANITIZE_STRING);
+$rg = filter_input(INPUT_POST, "rg", FILTER_SANITIZE_STRING);
+$cpf = filter_input(INPUT_POST, "cpf", FILTER_SANITIZE_STRING);
+$phone = filter_input(INPUT_POST, "phone", FILTER_SANITIZE_STRING);
+$course = filter_input(INPUT_POST, "course", FILTER_SANITIZE_STRING);
+$year = filter_input(INPUT_POST, "year", FILTER_SANITIZE_STRING);
+$expedient = filter_input(INPUT_POST, "expedient", FILTER_SANITIZE_STRING);
 
-$create = mysqli_query($connect, $query);
+$sql = "INSERT INTO $tableApp(name, birth, rg, cpf, phone, course, year, expedient) VALUES('$name', '$birth', '$rg', '$cpf', '$phone', '$course', '$year', '$expedient')";
 
-if ($create) {
-  header("Location:../index.php");
+$query =  mysqli_query($connect, $sql);
+
+if (!$query) {
+  echo "Falha na criacão do usuário: " . mysqli_error($connect);
 } else {
-  echo "Create error <br><br>" . mysqli_error($connect);
+  header("Location:../pages/index.php");
 }
 
 mysqli_close($connect);
