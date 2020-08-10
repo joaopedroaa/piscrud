@@ -1,6 +1,6 @@
 ## SQL
 
-### V1
+### Login
 
 ```sql
 CREATE TABLE login(
@@ -10,6 +10,8 @@ CREATE TABLE login(
     password  VARCHAR(100) NOT NULL
 );
 ```
+
+### Estudante
 
 ```sql
 CREATE TABLE student(

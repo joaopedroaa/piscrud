@@ -4,8 +4,8 @@
 
 ---
 
-- [SQL](./markdown/sql.md)
-- [Sistema de cadastro](./markdown/REGISTER.md)
+- [SQL](./.github/markdown/sql.md)
+- [Sistema de cadastro](./.github/markdown/register.md)
 
 ## Todo
 
