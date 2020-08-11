@@ -3,14 +3,13 @@ include_once 'connect.php';
 
 $id = $_GET['id'];
 
-$query = "DELETE FROM $tableApp WHERE registration=$id;";
-echo $query;
-$delete = mysqli_query($connect, $query);
+$sql = "DELETE FROM $tableApp WHERE registration=$id;";
+$query = mysqli_query($connect, $sql);
 
-if ($delete) {
-  header('location:../pages/index.php');
-} else {
+if (!$query) {
   die("Delete error");
+} else {
+  header('location:../pages/index.php');
 }
 
 mysqli_close($connect);
