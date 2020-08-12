@@ -40,9 +40,12 @@ const data = {
     ],
   },
   course: [
+    "Administração",
+    "Telecomunicações",
+    "Eletrônica",
+    "Administração",
     "Química",
     "Informática",
-    "Administração",
     "Petróleo e Gás",
     "Segurança do Trabalho"
   ],
@@ -52,7 +55,7 @@ const data = {
     "3",
   ],
   expedient: [
-    "matutino",
-    "vespertino",
+    "Matutino",
+    "Vespertino",
   ]
 };

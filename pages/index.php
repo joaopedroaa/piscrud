@@ -9,6 +9,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <title>Piscrud</title>
+
+  <script src="https://kit.fontawesome.com/1e26d1774e.js" crossorigin="anonymous"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/shared.js"></script>
 </head>
 
 <body>
@@ -39,26 +43,24 @@
 
       <label for="course">Curso</label>
       <select name="course" id="course">
-        <option value="Química">Química</option>
-        <option value="Informática">Informática</option>
-        <option value="Administração">Administração</option>
-        <option value="Petróleo e Gás">Petróleo e Gás</option>
-        <option value="Segurança do Trabalho">Segurança do Trabalho</option>
+        <script>
+          query("#course").innerHTML = data.course.map(el => `<option value="${el}">${el}</option>`).join("")
+        </script>
       </select>
 
       <label for="year">Ano</label>
       <select name="year" id="year">
-        <option value="1">1 Ano</option>
-        <option value="2">2 Ano</option>
-        <option value="3">3 Ano</option>
+        <script>
+          query("#year").innerHTML = data.year.map(el => `<option value="${el}">${el + " ano"}</option>`).join("")
+        </script>
       </select>
 
       <label for="expedient">Turno</label>
       <select name="expedient" id="expedient">
-        <option value="matutino">Matutino</option>
-        <option value="vespertino">Vespertino</option>
+        <script>
+          query("#expedient").innerHTML = data.expedient.map(el => `<option value="${el}">${el}</option>`).join("")
+        </script>
       </select>
-
 
       <button type="submit">Cadastrar</button>
     </form>
@@ -181,9 +183,7 @@
   </section>
 </body>
 
-<script src="https://kit.fontawesome.com/1e26d1774e.js" crossorigin="anonymous"></script>
-<script src="../js/data.js"></script>
-<script src="../js/shared.js"></script>
+
 <script src="../js/addInput.js"></script>
 
 </html>
