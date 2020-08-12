@@ -1,21 +1,21 @@
 ## All
 
-- [x] Matricula
-- [x] Nome do Aluno
-- [x] Data de Nascimento
-- [x] RG
-- [x] CPF
-- [x] Telefone
-- [x] Curso
+- [x] Matricula **(registration)**
+- [x] Nome do Aluno **(name)**
+- [x] Data de Nascimento **(birth)**
+- [x] RG **(rg)**
+- [x] CPF **(cpf)**
+- [x] Telefone **(phone)**
+- [x] Curso **(course)**
   - [x] Química
   - [x] Informática
   - [x] Administração
   - [x] Petróleo e Gás
   - [x] Segurança do Trabalho
-- [x] Ano
+- [x] Ano **(year)**
   - [x] 1 Ano
   - [x] 2 Ano
   - [x] 3 Ano
-- [x] Turno
+- [x] Turno **(expedient)**
   - [x] Matutino
   - [x] Vespertino

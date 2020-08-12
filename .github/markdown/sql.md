@@ -11,6 +11,8 @@ CREATE TABLE login(
 );
 ```
 
+<!-- todo: login with email -->
+
 ### Estudante
 
 ```sql
@@ -28,4 +30,4 @@ CREATE TABLE student(
 ```
 
 <!-- todo: add email -->
-<!-- todo: change registration name -->
+<!-- todo: change registration name to ? -->

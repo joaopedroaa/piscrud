@@ -1,65 +1,27 @@
-const data = {
-  model: ["Y", "X", "J", "H", "S", "P", "3", "J"],
-  brand: [
-    "Honda",
-    "Tesla",
-    "Toyota",
-    "BMW",
-    "Volkswagen",
-    "Mercedes-Benz",
-    "Nissan",
-    "Ford",
-    "Porsche",
-    "Hyundai",
-    "Renault",
-    "Peugeot",
-    "Audi",
-    "Chevrolet",
-    "Kia",
-    "Suzuki",
-    "Fiat",
-    "Daimler",
-    "Land Rover",
-    "Citroën",
-    "Subaru",
-  ],
-  color: [
-    "Cinza",
-    "Prata",
-    "Branco",
-    "Preto",
-    "Amarelo",
-    "Vermelho",
-    "Roxo",
-    "Azul",
-    "Verde",
-    "Laranja",
-  ],
-};
-
-const query = (id) => document.querySelector(id);
-
-function addCars({ model, brand, price, year, color }) {
-  query("#model").value = model;
-  query("#brand").value = brand;
-  query("#price").value = price;
+function addUser(mode, { name, birth, rg, cpf, phone, course, year, expedient }) {
+  if (mode == 0) return;
+  query("#name").value = name;
+  query("#birth").value = birth;
+  query("#rg").value = rg;
+  query("#cpf").value = cpf;
+  query("#phone").value = phone;
+  query("#course").value = course;
   query("#year").value = year;
-  query("#color").value = color;
+  query("#expedient").value = expedient;
 }
 
-function getRandomNumber(min, size) {
-  return Math.floor(Math.random() * size + min);
-}
+const fullName =
+  getOneInArray(data.name, "first") + " " +
+  getOneInArray(data.name, "middle") + " " +
+  getOneInArray(data.name, "last")
 
-function getRandomNumberBetwen(min, max) {
-  const size = max + 1 - min;
-  return Math.floor(Math.random() * size + min);
-}
-
-addCars({
-  price: getRandomNumberBetwen(5000, 150000),
-  year: getRandomNumberBetwen(1769, 2022),
-  model: data.model[getRandomNumber(0, data.model.length)],
-  brand: data.brand[getRandomNumber(0, data.brand.length)],
-  color: data.color[getRandomNumber(0, data.color.length)],
+addUser(1, {
+  name: fullName,
+  birth: "2020-03-12",
+  rg: getRandomNumberBetwen(1, 999999999),
+  cpf: getRandomNumberBetwen(1, 99999999999),
+  phone: "9" + getRandomNumber(0, 99999) + getRandomNumber(0, 9999),
+  course: getOneInArray(data, "course"),
+  year: getOneInArray(data, "year"),
+  expedient: getOneInArray(data, "expedient")
 });

@@ -8,7 +8,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
-  <title>Locardora</title>
+  <title>Piscrud</title>
 </head>
 
 <body>
@@ -182,7 +182,8 @@
 </body>
 
 <script src="https://kit.fontawesome.com/1e26d1774e.js" crossorigin="anonymous"></script>
-<script src="../js/addInput.js"></script>
 <script src="../js/data.js"></script>
+<script src="../js/shared.js"></script>
+<script src="../js/addInput.js"></script>
 
 </html>
