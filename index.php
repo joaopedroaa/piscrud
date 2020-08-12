@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+<?php session_start(); ?>
 
 <head>
   <meta charset="UTF-8">
@@ -33,7 +34,7 @@
       <?php endif; ?>
 
       <?php
-      session_start();
+
       unset($_SESSION['signup']);
       unset($_SESSION['unauthorized_login']);
       unset($_SESSION['unauthorized_password']);

@@ -2,7 +2,8 @@
 include_once "connect.php";
 session_start();
 
-function backIndex(){
+function backIndex()
+{
   header("Location:../index.php");
   exit();
 }
@@ -13,29 +14,28 @@ if (empty($username) || empty($password)) {
   backIndex();
 }
 
-
-$sql = "SELECT id, name, login FROM $tableLogin WHERE login='$username' AND password=md5('$password');";
+$sql = "SELECT * FROM $tableLogin WHERE login='$username'";
 $query = mysqli_query($connect, $sql);
 $row = mysqli_num_rows($query);
-
-$sql_login = "SELECT id, name, login FROM $tableLogin WHERE login='$username'";
-$query_login = mysqli_query($connect, $sql_login);
-$row_login = mysqli_num_rows($query_login);
-
+$assoc = mysqli_fetch_assoc($query);
+$password_hash = $assoc['password'];
 
 if ($row) {
-  $_SESSION['username'] = $username;
-  $_SESSION['name'] = mysqli_fetch_assoc($query_login)['name'];
-  header("Location:../pages/index.php");
-
-  exit();
-
-} else {
-  if ($row_login) {
+  if (password_verify($password, $password_hash)) {
+    $_SESSION['username'] = $username;
+    $_SESSION['name'] = $assoc['name'];
+    header("Location:../pages/index.php");
+    exit();
+  } else {
     $_SESSION['unauthorized_password'] = true;
     backIndex();
-  } else {
-    $_SESSION['unauthorized_login'] = true;
-    backIndex();
   }
+} else {
+  $_SESSION['unauthorized_login'] = true;
+  backIndex();
 }
+
+
+// $sql_login = "SELECT id, name, login FROM $tableLogin WHERE login='$username'";
+// $query_login = mysqli_query($connect, $sql_login);
+// $row_login = mysqli_num_rows($query_login);
