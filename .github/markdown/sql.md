@@ -1,5 +1,17 @@
 ## SQL
 
+```sh
+mysql -u joaopedro -p
+```
+
+### Database
+```sql
+CREATE DATABASE escola;
+USE escola;
+
+```
+
+
 ### Login
 
 ```sql
@@ -9,6 +21,7 @@ CREATE TABLE login(
     login     VARCHAR(100) NOT NULL UNIQUE,
     password  VARCHAR(100) NOT NULL
 );
+
 ```
 
 <!-- todo: login with email -->
@@ -27,7 +40,14 @@ CREATE TABLE student(
   year      VARCHAR(100) NOT NULL,
   expedient VARCHAR(100) NOT NULL
 );
+
 ```
+
+```sql
+SHOW TABLES;
+```
+
+
 
 <!-- todo: add email -->
 <!-- todo: change registration name to ? -->
